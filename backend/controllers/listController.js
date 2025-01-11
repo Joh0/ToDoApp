@@ -1,7 +1,7 @@
 const db = require('./db'); // import the connection from db.js
 
 // Use this for postman
-// http://localhost:3000/api/listGroup/lim?sortColumn=id&sortOrder=DESC
+// http://localhost:3000/api/listGroup/tim?sortColumn=id&sortOrder=DESC
 
 
 const getAllItemsByUser = (req, res) => {
@@ -22,6 +22,9 @@ const getAllItemsByUser = (req, res) => {
     });
 }
 
+// Use this for postman
+// http://localhost:3000/api/listGroup/lim?sortColumn=id&sortOrder=DESC
+
 const getAllItemsByUserGroup = (req, res) => {
     const group = req.params.group;
     const sortColumn = req.query.sortColumn;
@@ -40,4 +43,20 @@ const getAllItemsByUserGroup = (req, res) => {
     });
 }
 
-module.exports = { getAllItemsByUser, getAllItemsByUserGroup };
+// Use this for postman
+// http://localhost:3000/api/listNameRemoved/simon
+
+const getAllDeletedItemsByUser = (req, res) => {
+    const name = req.params.name;
+    var sql = "SELECT * from to_do_items where `name` = ? and status = 'deleted'";
+    db.query(sql, [name], (err, result) => {
+        if(err){
+            res.status(500).json({ message: 'Error reading from DB', error: err.message});
+        }
+        else{
+            res.status(200).json({ data: result });
+        }
+    });
+}
+
+module.exports = { getAllItemsByUser, getAllItemsByUserGroup, getAllDeletedItemsByUser };

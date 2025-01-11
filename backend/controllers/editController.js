@@ -17,3 +17,13 @@ editItem = (req, res) => {
 }
 
 module.exports = { editItem };
+
+// Sample for postman
+/*
+{
+"id": 1,
+"item": "laundry",
+"priority": 6,
+"category": "household"
+}
+*/

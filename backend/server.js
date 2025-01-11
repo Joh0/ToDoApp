@@ -1,7 +1,7 @@
 const express = require('express'); // All of these you have to 'npm install xxx' at the base path
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { getAllItemsByUser, getAllItemsByUserGroup } = require('./controllers/listController');
+const { getAllItemsByUser, getAllItemsByUserGroup, getAllDeletedItemsByUser } = require('./controllers/listController');
 const { addItem } = require('./controllers/addController');
 const { editItem } = require('./controllers/editController');
 
@@ -14,6 +14,7 @@ app.use(cors());
 // All the apis
 app.get("/api/listName/:name", getAllItemsByUser);
 app.get("/api/listGroup/:group", getAllItemsByUserGroup);
+app.get("/api/listNameDeleted/:name", getAllDeletedItemsByUser);
 app.post("/api/add", addItem);
 app.put("/api/edit", editItem);
 
