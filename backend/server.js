@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { getAllItemsByUser, getAllItemsByUserGroup } = require('./controllers/listController');
 const { addItem } = require('./controllers/addController');
+const { editItem } = require('./controllers/editController');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.get("/api/listName/:name", getAllItemsByUser);
 app.get("/api/listGroup/:group", getAllItemsByUserGroup);
 app.post("/api/add", addItem);
+app.put("/api/edit", editItem);
 
 const PORT = 3000;
 app.listen(PORT, ()=>{

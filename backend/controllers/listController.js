@@ -11,7 +11,7 @@ const getAllItemsByUser = (req, res) => {
     if(!['ASC','DESC'].includes(sortOrder)){
         return res.status(400).json({ message: "Invalid sort order"});
     }
-    var sql = "SELECT * from to_do_items where `name` = ? and status = 'active' order by ??" + sortOrder;
+    var sql = "SELECT * from to_do_items where `name` = ? and status in ('active', 'completed') order by ??" + sortOrder;
     db.query(sql, [name, sortColumn], (err, result) => {
         if(err){
             res.status(500).json({ message: 'Error reading from DB', error: err.message});
@@ -29,7 +29,7 @@ const getAllItemsByUserGroup = (req, res) => {
     if(!['ASC','DESC'].includes(sortOrder)){
         return res.status(400).json({ message: "Invalid sort order"});
     }
-    var sql = "SELECT * from to_do_items where `group` = ? and status = 'active' order by ??" + sortOrder;
+    var sql = "SELECT * from to_do_items where `group` = ? and status in ('active', 'completed') order by ??" + sortOrder;
     db.query(sql, [group, sortColumn], (err, result) => {
         if(err){
             res.status(500).json({ message: 'Error reading from DB', error: err.message});
