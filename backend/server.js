@@ -2,6 +2,7 @@ const express = require('express'); // All of these you have to 'npm install xxx
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { getAllItemsByUser, getAllItemsByUserGroup } = require('./controllers/listController');
+const { addItem } = require('./controllers/addController');
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(cors());
 // All the apis
 app.get("/api/listName/:name", getAllItemsByUser);
 app.get("/api/listGroup/:group", getAllItemsByUserGroup);
+app.post("/api/add", addItem);
 
 const PORT = 3000;
 app.listen(PORT, ()=>{

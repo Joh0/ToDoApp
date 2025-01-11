@@ -1,5 +1,8 @@
 const db = require('./db'); // import the connection from db.js
 
+// Use this for postman
+// http://localhost:3000/api/listGroup/lim?sortColumn=id&sortOrder=DESC
+
 
 const getAllItemsByUser = (req, res) => {
     const name = req.params.name;
