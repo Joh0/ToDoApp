@@ -5,6 +5,7 @@ const { getAllItemsByUser, getAllItemsByUserGroup, getAllDeletedItemsByUser } = 
 const { addItem } = require('./controllers/addController');
 const { editItem, markComplete, markActive, markDelete } = require('./controllers/editController');
 const { deleteItem } = require('./controllers/deleteController');
+const { registerUser, loginUser } = require('./controllers/authController');
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.put("/api/markComplete", markComplete);
 app.put("/api/markActive", markActive);
 app.put("/api/markDelete", markDelete);
 app.delete("/api/delete", deleteItem);
+app.post("/api/register", registerUser);
+app.post("/api/login", loginUser);
 
 const PORT = 3000;
 app.listen(PORT, ()=>{
