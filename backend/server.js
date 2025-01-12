@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { getAllItemsByUser, getAllItemsByUserGroup, getAllDeletedItemsByUser } = require('./controllers/listController');
 const { addItem } = require('./controllers/addController');
-const { editItem, markComplete, markActive } = require('./controllers/editController');
+const { editItem, markComplete, markActive, markDelete } = require('./controllers/editController');
+const { deleteItem } = require('./controllers/deleteController');
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.post("/api/add", addItem);
 app.put("/api/edit", editItem);
 app.put("/api/markComplete", markComplete);
 app.put("/api/markActive", markActive);
+app.put("/api/markDelete", markDelete);
+app.delete("/api/delete", deleteItem);
 
 const PORT = 3000;
 app.listen(PORT, ()=>{

@@ -30,7 +30,7 @@ const getAllItemsByUser = (req, res) => {
     queryParam.push(sortColumn);
     db.query(sql, queryParam, (err, result) => {
         if(err){
-            res.status(500).json({ message: 'Error reading from DB', error: err.message});
+            res.status(404).json({ message: 'Error reading from DB', error: err.message});
         }
         else{
             res.status(200).json({ data: result });
@@ -67,7 +67,7 @@ const getAllItemsByUserGroup = (req, res) => {
     queryParam.push(sortColumn);
     db.query(sql, queryParam, (err, result) => {
         if(err){
-            res.status(500).json({ message: 'Error reading from DB', error: err.message});
+            res.status(404).json({ message: 'Error reading from DB', error: err.message});
         }
         else{
             res.status(200).json({ data: result });
@@ -83,7 +83,7 @@ const getAllDeletedItemsByUser = (req, res) => {
     var sql = "SELECT * from to_do_items where `name` = ? and status = 'deleted'";
     db.query(sql, [name], (err, result) => {
         if(err){
-            res.status(500).json({ message: 'Error reading from DB', error: err.message});
+            res.status(404).json({ message: 'Error reading from DB', error: err.message});
         }
         else{
             res.status(200).json({ data: result });
