@@ -1,18 +1,34 @@
 const db = require('./db'); // import the connection from db.js
 
 // Use this for postman
-// http://localhost:3000/api/listGroup/tim?sortColumn=id&sortOrder=DESC
+// http://localhost:3000/api/listName/tim?sortColumn=id&sortOrder=DESC&status=active&category=household
 
 
 const getAllItemsByUser = (req, res) => {
     const name = req.params.name;
-    const sortColumn = req.query.sortColumn;
-    const sortOrder = req.query.sortOrder;
+    const sortColumn = req.query.sortColumn || 'id';
+    const sortOrder = req.query.sortOrder || 'ASC';
+    const status = req.query.status;
+    const category = req.query.category;
     if(!['ASC','DESC'].includes(sortOrder)){
         return res.status(400).json({ message: "Invalid sort order"});
     }
-    var sql = "SELECT * from to_do_items where `name` = ? and status in ('active', 'completed') order by ??" + sortOrder;
-    db.query(sql, [name, sortColumn], (err, result) => {
+    var sql = "SELECT * from to_do_items where `name` = ?";
+    var queryParam = [name];
+    if(status){
+        sql += " AND status = ?";
+        queryParam.push(status);
+    }
+    if(category){
+        sql += " AND category = ?";
+        queryParam.push(category);
+    }
+    else{
+        sql += " AND status in ('active', 'completed')";
+    }
+    sql += " ORDER BY ??" + sortOrder;
+    queryParam.push(sortColumn);
+    db.query(sql, queryParam, (err, result) => {
         if(err){
             res.status(500).json({ message: 'Error reading from DB', error: err.message});
         }
@@ -23,17 +39,33 @@ const getAllItemsByUser = (req, res) => {
 }
 
 // Use this for postman
-// http://localhost:3000/api/listGroup/lim?sortColumn=id&sortOrder=DESC
+// http://localhost:3000/api/listGroup/lim?sortColumn=id&sortOrder=DESC&status=active&category=household
 
 const getAllItemsByUserGroup = (req, res) => {
     const group = req.params.group;
-    const sortColumn = req.query.sortColumn;
-    const sortOrder = req.query.sortOrder;
+    const sortColumn = req.query.sortColumn || 'id';
+    const sortOrder = req.query.sortOrder || 'ASC';
+    const status = req.query.status;
+    const category = req.query.category;
     if(!['ASC','DESC'].includes(sortOrder)){
         return res.status(400).json({ message: "Invalid sort order"});
     }
-    var sql = "SELECT * from to_do_items where `group` = ? and status in ('active', 'completed') order by ??" + sortOrder;
-    db.query(sql, [group, sortColumn], (err, result) => {
+    var sql = "SELECT * from to_do_items where `group` = ?";
+    var queryParam = [group];
+    if(status){
+        sql += " AND status = ?";
+        queryParam.push(status);
+    }
+    if(category){
+        sql += " AND category = ?";
+        queryParam.push(category);
+    }
+    else{
+        sql += " AND status in ('active', 'completed')";
+    }
+    sql += " ORDER BY ??" + sortOrder;
+    queryParam.push(sortColumn);
+    db.query(sql, queryParam, (err, result) => {
         if(err){
             res.status(500).json({ message: 'Error reading from DB', error: err.message});
         }
