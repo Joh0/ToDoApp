@@ -1,0 +1,42 @@
+.form-container{
+    display: flex;
+    align-items: center;
+    justify-content: left; 
+    height: 30vh;
+    margin-left: 30%;
+    padding: 10px;
+    /*border: 2px solid black;*/
+    border: 2px solid black;
+}
+
+.form-row{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 10px;
+    /*border: 2px solid blue;*/
+}
+
+.form-label{
+    margin-right: 2px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.form-input{
+    margin-right: 5px;
+}
+
+.alert-text{
+    color: red;
+}
+
+.switch-button{
+    display: flex;
+    margin-left: 30%;
+    padding: 10px;
+}
+
+#toggle{
+    margin-right: 5px;
+}

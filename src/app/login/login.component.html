@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div class="form-container">
+    <form (ngSubmit)="submitForm(f)" #f="ngForm">
+        <div class="form-row">
+            <label class="form-label" for="username">Username:</label>
+            <input class="form-input" id="username" #username="ngModel" ngModel name="name" type="text" placeholder="John" pattern="^[a-zA-z0-9]{3,12}$" required>
+            <div class="validation" *ngIf="username.invalid && username.touched">
+                <div class="alert-text" *ngIf="username.errors?.['required']">Username should not be blank</div>
+                <div class="alert-text" *ngIf="username.errors?.['pattern']">Username should be 3 to 12 characters, consisting only of letters and numbers</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <label class="form-label" for="password">Password: </label>
+            <input class="form-input" id="password" #password="ngModel" ngModel name="password" type="{{passwordFlag? 'text': 'password'}}" pattern="^[a-zA-z0-9@#$%!]{6,12}$" required>
+            <button id="toggle" type = "button" (click)="showHidePassword()">{{passwordButton}}</button>
+            <div class="validation" *ngIf="password.invalid && password.touched">
+                <div class="alert-text" *ngIf="password.errors?.['required']">Password should not be blank</div>
+                <div class="alert-text" *ngIf="password.errors?.['pattern']">Password should be 6 to 12 characters, excluding some special characters like ^ * ( ) - = + _</div>
+            </div>
+        </div>
+        <div class="form-row" *ngIf="this.submitButtonText=='Register'">
+            <label class="form-label" for="group">Group:</label>
+            <input class="form-input" id="group" #group="ngModel" ngModel name="group" type="text" pattern="^[a-zA-z0-9]{3,12}$" required>
+            <div class="validation" *ngIf="group.invalid && group.touched">
+                <div class="alert-text" *ngIf="group.errors?.['required']">Group should not be blank</div>
+                <div class="alert-text" *ngIf="group.errors?.['pattern']">Group should be 3 to 12 characters, consisting only of letters and numbers</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <button type="submit" [disabled]="f.invalid">{{submitButtonText}}</button>
+        </div>
+    </form>
+</div>
+    <div class="switch-button">
+        <button (click)="switch()">{{switchButtonText}}</button>
+    </div>
+

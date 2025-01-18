@@ -6,3 +6,9 @@ th, td{
     padding: 3px;
     text-align: center;
 }
+
+.active{
+    background-color: black;
+    font-weight: bold;
+    color: white;
+}

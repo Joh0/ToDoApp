@@ -38,22 +38,22 @@ loginUser = (req, res) => {
     var sql = "SELECT name, password, `group` from to_do_users where name = ?";
     db.query(sql, [name], async(err, result) => {
         if(err){
-            return res.status(500).json({ status: false, message: "Database error.", error: err.message });
+            return res.status(500).json({ message: "Database error.", error: err.message });
         }
         if(result.length === 0){
-            return res.status(404).json({ status: false, message: "User not found!" });
+            return res.status(404).json({ message: "User not found!" });
         }
         const user = result[0];
         const isMatch = await bcrypt.compare(password, user.password);
         if(!isMatch){
-            return res.status(401).json({ status: false, message: "Invalid password!" });
+            return res.status(401).json({ message: "Invalid password!" });
         }
         const token = jwt.sign(
             { name: user.name },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         )
-        return res.status(200).json({ token: token, username: user.name, group: user.group });
+        return res.status(200).json({ token: token, name: user.name, group: user.group });
     })
 
 }

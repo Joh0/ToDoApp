@@ -1,11 +1,12 @@
 <table>
     <tbody>
         <tr>
-            <th><a>Main Page</a></th>
-            <th><a>To Do List</a></th>
-            <th><a>Login/Register</a></th>
-            <th><button>Log Out</button></th>
+            <th><a routerLink="home" routerLinkActive="active">Main Page</a></th>
+            <th><a routerLink="list" routerLinkActive="active" >To Do List</a></th>
+            <th><a routerLink="login" routerLinkActive="active">Login/Register</a></th>
+            <th><button (click)="logOut()">Log Out</button></th>
             <th>{{ message }}</th>
         </tr>
     </tbody>
 </table>
+<router-outlet></router-outlet>
