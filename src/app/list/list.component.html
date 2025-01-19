@@ -1,1 +1,32 @@
-<p>list works!</p>
+<div class="form-container">
+    <form (ngSubmit)="searchForm(f)" #f="ngForm">
+        <div class="form-row">
+
+        </div>
+    </form>
+</div>
+<div class="switchComponent">
+    <button type="button" (click)="switchMode()">Switch to {{mode}} mode</button>
+</div>
+<table>
+    <thead>
+        <th>ID</th>
+        <th>ITEM</th>
+        <th>PRIORITY</th>
+        <th>CATEGORY</th>
+        <th>NAME</th>
+        <th>GROUP</th>
+        <th>STATUS</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of itemList">
+            <td>{{ item.id }}</td>
+            <td>{{ item.item }}</td>
+            <td>{{ item.priority }}</td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.group }}</td>
+            <td>{{ item.status }}</td>
+        </tr>
+    </tbody>
+</table>

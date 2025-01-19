@@ -1,0 +1,55 @@
+import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Item } from './models/item.model';
+import { catchError, Observable, throwError } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CrudService {
+
+  private apiURL = 'http://localhost:3000/api/';
+
+  constructor(private authService: AuthService, private http: HttpClient) { }
+
+  getListWithName(optionalParams?: { [key: string]: string | number }): Observable<{data: Item[]}>{
+    let params = new HttpParams;
+
+    if(optionalParams){
+      for(const key in optionalParams){
+        if(optionalParams[key] !== undefined && optionalParams[key] !== null){
+          params.set(key, optionalParams[key].toString());
+        }
+      }
+    }
+
+    return this.http.get<{data: Item[]}>(this.apiURL + 'listName/' + this.authService.name, { params }).pipe(
+      catchError((error) => {
+        console.error('Error:', error);  // Log the error
+        return throwError(error);  // Propagate the error to the component
+      })
+    )
+  }
+
+  getListWithGroup(optionalParams?: { [key: string]: string | number }): Observable<{data: Item[]}>{
+    let params = new HttpParams;
+
+    if(optionalParams){
+      for(const key in optionalParams){
+        if(optionalParams[key] !== undefined && optionalParams[key] !== null){
+          params.set(key, optionalParams[key].toString());
+        }
+      }
+    }
+
+    return this.http.get<{data: Item[]}>(this.apiURL + 'listGroup/' + this.authService.group, { params }).pipe(
+      catchError((error) => {
+        console.error('Error:', error);  // Log the error
+        return throwError(error);  // Propagate the error to the component
+      })
+    )
+  }
+
+
+}

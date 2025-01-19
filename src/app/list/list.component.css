@@ -1,0 +1,14 @@
+.switchComponent{
+    margin-bottom: 10px;
+}
+
+table{
+    border: 2px solid black;
+    width: 100%;  
+}
+
+th, tr, td{
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid red;
+}
