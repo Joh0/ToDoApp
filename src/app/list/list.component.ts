@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../crud.service';
 import { Item } from '../models/item.model';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-list',
@@ -12,22 +13,23 @@ export class ListComponent implements OnInit{
 
   itemList: Item[] | null = null;
   mode: string = 'group';
+  title: string | null = '';
 
-  constructor(private crudService: CrudService){
-
+  constructor(private crudService: CrudService, private authService: AuthService){
+    this.title = authService.name + "'s list";
   }
 
   ngOnInit(){
     this.getList();
   }
 
-  getList(){
+  getList(formValue?: any){
     var functionToUse;
     if(this.mode == 'group'){
-      functionToUse = this.crudService.getListWithName();
+      functionToUse = this.crudService.getListWithName(formValue);
     }
     else{
-      functionToUse = this.crudService.getListWithGroup();
+      functionToUse = this.crudService.getListWithGroup(formValue);
     }
 
     functionToUse.subscribe(
@@ -44,18 +46,22 @@ export class ListComponent implements OnInit{
   }
 
   switchMode(){
-    if(this.mode == 'name'){
-      this.mode = 'group';
+    if(this.mode == 'name'){ // Button is currently stating switch to "Name", meaning it is showing group
+      this.mode = 'group'; // Upon click, it will switch to stating switch to "Group", meaning it is showing name
       this.getList();
+      this.title = this.authService.name + "'s list"; // your title should be of name
     }
     else{
       this.mode = 'name';
       this.getList();
+      this.title = "The " + this.authService.group + " group's list";
     }
   }
 
   searchForm(f: NgForm){
-
+    console.log(f);
+    this.getList(f.value);
+    alert("Search Complete!");
   }
 
 }

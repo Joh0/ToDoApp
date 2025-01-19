@@ -19,10 +19,12 @@ export class CrudService {
     if(optionalParams){
       for(const key in optionalParams){
         if(optionalParams[key] !== undefined && optionalParams[key] !== null){
-          params.set(key, optionalParams[key].toString());
+          params = params.set(key, optionalParams[key].toString()); // Reassigning params because whenever it is modified, it returns a new instance and the old one remains immutable
         }
       }
     }
+    console.log("Params to be provided to backend");
+    console.log(params);
 
     return this.http.get<{data: Item[]}>(this.apiURL + 'listName/' + this.authService.name, { params }).pipe(
       catchError((error) => {
@@ -38,10 +40,12 @@ export class CrudService {
     if(optionalParams){
       for(const key in optionalParams){
         if(optionalParams[key] !== undefined && optionalParams[key] !== null){
-          params.set(key, optionalParams[key].toString());
+          params = params.set(key, optionalParams[key].toString());
         }
       }
     }
+    console.log("Params to be provided to backend");
+    console.log(params);
 
     return this.http.get<{data: Item[]}>(this.apiURL + 'listGroup/' + this.authService.group, { params }).pipe(
       catchError((error) => {

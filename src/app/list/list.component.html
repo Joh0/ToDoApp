@@ -1,7 +1,39 @@
+<h1>{{title}}</h1>
+<h3>Sort your list via the following criteria</h3>
 <div class="form-container">
     <form (ngSubmit)="searchForm(f)" #f="ngForm">
         <div class="form-row">
-
+            <label class="form-label" for="sortColumn">Sort By</label>
+            <select class="form-input" id="sortColumn" #name="ngModel" ngModel name="sortColumn" required>
+                <option value="id">Item Insert Time</option>
+                <option value="priority">Priority</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label class="form-label" for="sortOrder">Sort Order</label>
+            <select class="form-input" id="sortOrder" #name="ngModel" ngModel name="sortOrder" required>
+                <option value="ASC">Ascending</option>
+                <option value="DESC">Descending</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label class="form-label" for="category">Category [Optional]</label>
+            <select class="form-input" id="category" #name="ngModel" ngModel name="category">
+                <option value="household">Household</option>
+                <option value="work">Work</option>
+                <option value="personal">Personal</option>
+                <option value="errands">Errands</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label class="form-label" for="status">Status [Optional]</label>
+            <select class="form-input" id="status" #name="ngModel" ngModel name="status">
+                <option value="active">Active</option>
+                <option value="completed">Completed</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <button type="submit" [disabled]="f.invalid">Search by these criteria</button>
         </div>
     </form>
 </div>
