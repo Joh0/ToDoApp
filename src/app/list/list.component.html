@@ -4,21 +4,21 @@
     <form (ngSubmit)="searchForm(f)" #f="ngForm">
         <div class="form-row">
             <label class="form-label" for="sortColumn">Sort By</label>
-            <select class="form-input" id="sortColumn" #name="ngModel" ngModel name="sortColumn" required>
+            <select class="form-input" id="sortColumn" #sortColumn="ngModel" ngModel name="sortColumn" required>
                 <option value="id">Item Insert Time</option>
                 <option value="priority">Priority</option>
             </select>
         </div>
         <div class="form-row">
             <label class="form-label" for="sortOrder">Sort Order</label>
-            <select class="form-input" id="sortOrder" #name="ngModel" ngModel name="sortOrder" required>
+            <select class="form-input" id="sortOrder" #sortOrder="ngModel" ngModel name="sortOrder" required>
                 <option value="ASC">Ascending</option>
                 <option value="DESC">Descending</option>
             </select>
         </div>
         <div class="form-row">
             <label class="form-label" for="category">Category [Optional]</label>
-            <select class="form-input" id="category" #name="ngModel" ngModel name="category">
+            <select class="form-input" id="category" #category="ngModel" ngModel name="category">
                 <option value="household">Household</option>
                 <option value="work">Work</option>
                 <option value="personal">Personal</option>
@@ -27,31 +27,39 @@
         </div>
         <div class="form-row">
             <label class="form-label" for="status">Status [Optional]</label>
-            <select class="form-input" id="status" #name="ngModel" ngModel name="status">
+            <select class="form-input" id="status" #status="ngModel" ngModel name="status">
                 <option value="active">Active</option>
                 <option value="completed">Completed</option>
             </select>
         </div>
         <div class="form-row">
-            <button type="submit" [disabled]="f.invalid">Search by these criteria</button>
+            <button form-button type="submit" [disabled]="f.invalid">Search by these criteria</button>
         </div>
     </form>
 </div>
+
 <div class="switchComponent">
     <button type="button" (click)="switchMode()">Switch to {{mode}} mode</button>
 </div>
+
+<form (ngSubmit)="markForm(f)" #f3="ngForm">
 <table>
     <thead>
-        <th>ID</th>
-        <th>ITEM</th>
-        <th>PRIORITY</th>
-        <th>CATEGORY</th>
-        <th>NAME</th>
-        <th>GROUP</th>
-        <th>STATUS</th>
+        <th style="width: 5%;">CHECKBOX</th>
+        <th style="width: 5%;">ID</th>
+        <th style="width: 54.25%;">ITEM</th>
+        <th style="width: 7.5%;">PRIORITY</th>
+        <th style="width: 7.5%;">CATEGORY</th>
+        <th style="width: 7.5%;">NAME</th>
+        <th style="width: 7.5%;">GROUP</th>
+        <th style="width: 7.5%;">STATUS</th>
+        <th style="width: 7.5%;">EDIT</th>
     </thead>
     <tbody>
         <tr *ngFor="let item of itemList">
+            <td>
+                <input type="checkbox" ngModel [(ngModel)]="checkboxStates[item.id]" name="checkbox{{item.id}}">
+            </td>
             <td>{{ item.id }}</td>
             <td>{{ item.item }}</td>
             <td>{{ item.priority }}</td>
@@ -59,6 +67,36 @@
             <td>{{ item.name }}</td>
             <td>{{ item.group }}</td>
             <td>{{ item.status }}</td>
+            <button type="button" (click)="editItem(item.id)">Edit</button>
         </tr>
     </tbody>
 </table>
+<button class="switchComponent" type="submit">{{form3Button}}</button>
+</form>
+<div class="switchComponent2">
+    <label class="form-label3" for="markInput">Mark Type</label>
+    <select class="form-input3" id="markInput" [(ngModel)]="form3Button">
+        <option value="Mark Active">Active</option>
+        <option value="Mark Complete">Complete</option>
+        <option value="Mark Delete">Delete</option>
+    </select>
+</div>
+
+<div class="form-container2">
+    <form (ngSubmit)="addItem(f2)" #f2="ngForm">
+        <input class="form-input2" [(ngModel)]="item.id" #id2="ngModel" name="id" hidden> <!-- disabled will prevent form from submitting id-->
+        <input class="form-input2" [(ngModel)]="item.item" #item2="ngModel" name="item" required>
+        <input class="form-input2" [(ngModel)]="item.priority" #priority2="ngModel" name="priority" type="number" pattern="^(10|[1-9])$" required>
+        <select class="form-input2" [(ngModel)]="item.category" #category2="ngModel" name="category" required>
+            <option value="household">Household</option>
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+            <option value="errands">Errands</option>
+        </select>
+        <input class="form-input2" [(ngModel)]="item.name" #name2="ngModel" name="name" hidden>
+        <input class="form-input2" [(ngModel)]="item.group" #group2="ngModel" name="group" hidden>
+        <input class="form-input2" [(ngModel)]="item.status" #status2="ngModel" name="status" hidden>
+        <button class="form-button" type="submit" [disabled]="f2.invalid">Add</button>
+        <div class="validationMessage" *ngIf="priority2.errors?.['pattern']">Priority should only be a number between 1 to 10</div>
+    </form>
+</div>

@@ -14,16 +14,32 @@ export class ListComponent implements OnInit{
   itemList: Item[] | null = null;
   mode: string = 'group';
   title: string | null = '';
+  userName: string | null = '';
+  userGroup: string | null = '';
+  item: Item; 
+  form3Button: string = 'Mark Complete';
+  checkboxStates: { [key: number] : boolean } = {};
 
   constructor(private crudService: CrudService, private authService: AuthService){
+    this.userName = authService.name;
+    this.userGroup = authService.group;
     this.title = authService.name + "'s list";
+    this.item = { // Initialise the item object here otherwise it will be initialised before the constructor, leavin username and usergroup empty
+      id: 0,
+      item: '',
+      priority: 10,
+      category: '',
+      name: this.userName,
+      group: this.userGroup,
+      status: 'active'
+    };
   }
 
   ngOnInit(){
     this.getList();
   }
 
-  getList(formValue?: any){
+  getList(formValue?: any){ // This formValue is for having queryParams as input for getList
     var functionToUse;
     if(this.mode == 'group'){
       functionToUse = this.crudService.getListWithName(formValue);
@@ -62,6 +78,87 @@ export class ListComponent implements OnInit{
     console.log(f);
     this.getList(f.value);
     alert("Search Complete!");
+  }
+
+  addItem(f2: NgForm){
+    console.log(f2.value);
+    this.crudService.addItem(f2.value).subscribe(
+      (response) => {
+        alert(response.message);
+        this.getList();
+
+      },
+      (error) => {
+        alert("Error: " + error.error.message);
+        alert("Reason: " + error.error.error);
+      }
+    )
+  }
+
+  markForm(f3: NgForm){
+    console.log('Form Value:', f3.value); // Contains checkbox states
+    console.log('Checkbox States:', this.checkboxStates);
+    var idArray: number[] = [];
+    var idObject: { [ids: string]: number[]} = { ids: []};
+    for(let id in this.checkboxStates){
+      if(this.checkboxStates[id] === true){
+        idArray.push(parseInt(id)); //Convert string to integer
+      }
+    }
+    console.log(idArray);
+    idObject["ids"]=idArray;
+    console.log(idObject);
+    if(this.form3Button === 'Mark Complete'){
+      this.markComplete(idObject);
+    }
+    else if(this.form3Button === 'Mark Active'){
+      this.markActive(idObject);
+    }
+    else if(this.form3Button === 'Mark Delete'){
+      this.markDelete(idObject);
+    }
+    f3.reset();
+    this.getList();
+  }
+
+  editItem(id: number){
+    console.log("Editing " + id);
+  }
+
+  markComplete(idObject: { [ids: string]: number[]} = { ids: []}){
+    this.crudService.markComplete(idObject).subscribe(
+      (response) => {
+        console.log(response.message);
+      },
+      (error) => {
+        alert("Error: " + error.error.message);
+        alert("Reason: " + error.error.error);
+      }
+    )
+  }
+
+  markActive(idObject: { [ids: string]: number[]} = { ids: []}){
+    this.crudService.markActive(idObject).subscribe(
+      (response) => {
+        console.log(response.message);
+      },
+      (error) => {
+        alert("Error: " + error.error.message);
+        alert("Reason: " + error.error.error);
+      }
+    )
+  }
+
+  markDelete(idObject: { [ids: string]: number[]} = { ids: []}){
+    this.crudService.markDelete(idObject).subscribe(
+      (response) => {
+        console.log(response.message);
+      },
+      (error) => {
+        alert("Error: " + error.error.message);
+        alert("Reason: " + error.error.error);
+      }
+    )
   }
 
 }

@@ -55,5 +55,26 @@ export class CrudService {
     )
   }
 
+  addItem(item: Item): Observable<{ message: string, error: string } | { message: string }>{
+    return this.http.post<{ message: string, error: string } | { message: string }>(this.apiURL + 'add', item).pipe(
+      catchError((error) => {
+        console.log("Error: " + error);
+        return throwError(error);
+      })
+    );
+  }
+
+  markComplete(idObject: { [ids: string]: number[]}): Observable<{ message: string, error: string } | { message: string }>{
+    return this.http.put<{ message: string, error: string } | { message: string }>(this.apiURL + 'markComplete', idObject);
+  }
+
+  markActive(idObject: { [ids: string]: number[]}): Observable<{ message: string, error: string } | { message: string }>{
+    return this.http.put<{ message: string, error: string } | { message: string }>(this.apiURL + 'markActive', idObject);
+  }
+
+  markDelete(idObject: { [ids: string]: number[]}): Observable<{ message: string, error: string } | { message: string }>{
+    return this.http.put<{ message: string, error: string } | { message: string }>(this.apiURL + 'markDelete', idObject);
+  }
+
 
 }

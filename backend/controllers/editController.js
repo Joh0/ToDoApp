@@ -39,7 +39,9 @@ markComplete = (req, res) => {
         return res.status(400).json({ message: "Invalid or missing 'ids' in request body" });
     }
     var sql = "UPDATE to_do_items SET status = 'completed' where id in (?)";
-    db.query(sql, ids, (err, result) => {
+    db.query(sql, [ids], (err, result) => {  // have to use [] in [ids] otherwise it will only take the first id in that array
+        console.log('Executing Query:', sql); // Check the final query
+        console.log('With Parameters:', ids); // Check the id once more
         if(err){
             res.status(500).json({ message: "Failed to mark item(s) as complete!", error: err.message });
         }
@@ -58,7 +60,7 @@ markActive = (req, res) => {
         return res.status(400).json({ message: "Invalid or missing 'ids' in request body" });
     }
     var sql = "UPDATE to_do_items SET status = 'active' where id in (?)";
-    db.query(sql, ids, (err, result) => {
+    db.query(sql, [ids], (err, result) => {
         if(err){
             res.status(500).json({ message: "Failed to mark item(s) as active!", error: err.message });
         }
@@ -77,7 +79,7 @@ markDelete = (req, res) => {
         return res.status(400).json({ message: "Invalid or missing 'ids' in request body" });
     }
     var sql = "UPDATE to_do_items SET status = 'deleted' where id in (?)";
-    db.query(sql, ids, (err, result) => {
+    db.query(sql, [ids], (err, result) => {
         if(err){
             res.status(500).json({ message: "Failed to deleted item(s)!", error: err.message });
         }

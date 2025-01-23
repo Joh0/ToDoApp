@@ -3,7 +3,7 @@ export interface Item{
     item: string,
     priority: number,
     category: string,
-    name: string,
-    group: string,
+    name: string | null,
+    group: string | null,
     status: string
 }

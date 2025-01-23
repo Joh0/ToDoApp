@@ -46,3 +46,36 @@ th, tr, td{
     border: 1px solid red;
     padding: 10px;
 }
+
+.form-container2{
+    display: flex;
+    margin: 20px auto;
+    width: 80%;
+    border: 2px solid black;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-input2{
+    margin-right: 5px;
+}
+
+.form-button{
+    margin-right: 5px;
+}
+
+.validationMessage{
+    margin: 5px;
+    color: red;
+}
+
+.form-label3{
+    margin-left: 20px;
+    margin-right: 5px;
+    border: 1px solid blue;
+
+} 
+
+.form-input3{
+    border: 1px solid blue;
+}
