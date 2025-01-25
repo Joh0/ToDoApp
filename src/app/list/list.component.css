@@ -4,7 +4,7 @@ h1, h3{
 
 .form-container{
     margin: 20px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center;
@@ -15,19 +15,21 @@ h1, h3{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid pink;
+    /* border: 1px solid pink; */
     margin-bottom: 10px;
 
 }
 
 .form-label{
     margin-right: 5px;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
 } 
 
+/*
 .form-input{
     border: 1px solid blue;
 }
+*/
 
 .switchComponent{
     margin-bottom: 10px;
@@ -38,12 +40,13 @@ table{
     margin: 20px auto;
     width: 80%;
     border: 2px solid black;
+    border-collapse: collapse;
 }
 
 th, tr, td{
     text-align: center;
     vertical-align: middle;
-    border: 1px solid red;
+    border: 2px solid black;
     padding: 10px;
 }
 
@@ -51,7 +54,7 @@ th, tr, td{
     display: flex;
     margin: 20px auto;
     width: 80%;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     align-items: center;
     justify-content: center;
 }
@@ -72,13 +75,15 @@ th, tr, td{
 .form-label3{
     margin-left: 20px;
     margin-right: 5px;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
 
 } 
 
+/*
 .form-input3{
     border: 1px solid blue;
 }
+*/
 
 app-edit{
     position: fixed;
