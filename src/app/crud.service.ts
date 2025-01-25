@@ -55,6 +55,11 @@ export class CrudService {
     )
   }
 
+  getDeletedListWithName(): Observable<{ data: Item[] }>{
+    return this.http.get<{ data: Item[] }>(this.apiURL + 'listNameDeleted/' + this.authService.name)
+  }
+
+
   addItem(item: Item): Observable<{ message: string, error: string } | { message: string }>{
     return this.http.post<{ message: string, error: string } | { message: string }>(this.apiURL + 'add', item).pipe(
       catchError((error) => {
@@ -78,6 +83,10 @@ export class CrudService {
 
   editItem(item: Item): Observable<{ message: string, error: string} | { message: string }>{
     return this.http.put<{ message: string, error: string} | { message: string }>(this.apiURL + 'edit', item);
+  }
+
+  deleteItem(idObject: { [ids: string]: number[]}): Observable<{ message: string, error: string } | { message: string }>{
+    return this.http.put<{ message: string, error: string } | { message: string }>(this.apiURL + 'delete', idObject);
   }
 
 }

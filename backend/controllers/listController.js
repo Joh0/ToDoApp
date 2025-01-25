@@ -76,12 +76,13 @@ const getAllItemsByUserGroup = (req, res) => {
 }
 
 // Use this for postman
-// http://localhost:3000/api/listNameRemoved/simon
+// http://localhost:3000/api/listNameDeleted/tim
 
 const getAllDeletedItemsByUser = (req, res) => {
     const name = req.params.name;
     var sql = "SELECT * from to_do_items where `name` = ? and status = 'deleted'";
     db.query(sql, [name], (err, result) => {
+        console.log("Retrieving deleted items of " + name);
         if(err){
             res.status(404).json({ message: 'Error reading from DB', error: err.message});
         }

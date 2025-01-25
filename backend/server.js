@@ -22,7 +22,7 @@ app.put("/api/edit", editItem);
 app.put("/api/markComplete", markComplete);
 app.put("/api/markActive", markActive);
 app.put("/api/markDelete", markDelete);
-app.delete("/api/delete", deleteItem);
+app.put("/api/delete", deleteItems); // If you wish to put ids to be deleted, then you have to use PUT method instead of DELETE
 app.post("/api/register", registerUser);
 app.post("/api/login", loginUser);
 

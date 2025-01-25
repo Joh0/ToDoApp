@@ -1,0 +1,37 @@
+<h1>{{this.title}}</h1>
+
+<div class="form-container">
+    <form (ngSubmit)="actionItems()" #f="ngForm">
+        <table>
+            <thead>
+                <th>CHECKBOX</th>
+                <th>ID</th>
+                <th>ITEM</th>
+                <th>PRIORITY</th>
+                <th>CATEGORY</th>
+                <th>NAME</th>
+                <th>GROUP</th>
+                <th>STATUS</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of itemList">
+                    <td>
+                        <input type="checkbox" ngModel [(ngModel)]="checkBoxStates[item.id]" name="checkbox{{item.id}}">
+                    </td>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.item }}</td>
+                    <td>{{ item.priority }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.group }}</td>
+                    <td>{{ item.status }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="button" type="submit">{{this.action}}</button>
+    </form>
+    
+</div>
+<button class="button" (click)="switchMode()">Switch to {{ this.mode }}</button>
+<button class="button" (click)="recoverAllItems()">Recover all items</button>
+<button class="button" (click)="deleteAllItems()">Delete all items</button>

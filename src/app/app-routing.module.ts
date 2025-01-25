@@ -4,12 +4,14 @@ import { MainComponent } from './main/main.component';
 import { ListComponent } from './list/list.component';
 import { EditComponent } from './edit/edit.component';
 import { LoginComponent } from './login/login.component';
+import { RecycleComponent } from './recycle/recycle.component';
 
 const routes: Routes = [
   { path: 'home', component: MainComponent, pathMatch: 'full'},
   { path: 'list', component: ListComponent, children: [
     { path: 'edit', component: EditComponent }
   ]},
+  { path: 'recycle', component: RecycleComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: MainComponent }
 ];

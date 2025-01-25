@@ -9,6 +9,7 @@ import { MainComponent } from './main/main.component';
 import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RecycleComponent } from './recycle/recycle.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     ListComponent,
     MainComponent,
-    EditComponent
+    EditComponent,
+    RecycleComponent
   ],
   imports: [
     BrowserModule,

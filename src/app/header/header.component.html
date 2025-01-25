@@ -3,6 +3,7 @@
         <tr>
             <th><a routerLink="home" routerLinkActive="active">Main Page</a></th>
             <th><a routerLink="list" routerLinkActive="active" >To Do List</a></th>
+            <th><a routerLink="recycle" routerLinkActive="active" >Recycle Bin</a></th>
             <th><a routerLink="login" routerLinkActive="active">Login/Register</a></th>
             <th><button (click)="logOut()" [disabled] = "this.message == 'Please Sign In'">Log Out</button></th>
             <th>{{ message }}</th>
