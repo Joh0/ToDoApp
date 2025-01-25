@@ -67,7 +67,7 @@
             <td>{{ item.name }}</td>
             <td>{{ item.group }}</td>
             <td>{{ item.status }}</td>
-            <button type="button" (click)="editItem(item.id)">Edit</button>
+            <button type="button" (click)="openEdit(item)">Edit</button>
         </tr>
     </tbody>
 </table>
@@ -100,3 +100,4 @@
         <div class="validationMessage" *ngIf="priority2.errors?.['pattern']">Priority should only be a number between 1 to 10</div>
     </form>
 </div>
+<app-edit *ngIf="isEditing" [item]="itemToBeEdited" (close)="closeEdit()" (save)="editItem($event)"></app-edit>

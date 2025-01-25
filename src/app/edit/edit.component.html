@@ -1,1 +1,34 @@
-<p>edit works!</p>
+<div class="overlay">
+    <div class="edit-container">
+        <h1>Edit your item</h1>
+        <div class="form-container"> 
+            <!-- form-container will be visible on top of the overlay because it is within the overlay.
+            No additional z-index is required for .form-container unless other elements in the DOM are competing for visibility.-->
+            <form (ngSubmit)="triggerSave()" #f="ngForm">
+                <div class="form-row">
+                    <label for="item" class="form-label">Item Name:</label>
+                    <input id="item" class="form-input" [(ngModel)]="item.item" #item2="ngModel" name="item" required>
+                </div>
+                <div class="form-row">
+                    <label for="priority" class="form-label">Priority:</label>
+                    <input id="priority" class="form-input" type="number" [(ngModel)]="item.priority" #priority2="ngModel" name="priority" pattern="^(10|[1-9])$" required>
+                </div>
+                <div class="form-row">
+                    <label for="category" class="form-label">Category:</label>
+                    <select id="category" class="form-input" [(ngModel)]="item.category" #category2="ngModel" name="category" required>
+                        <option value="household">Household</option>
+                        <option value="work">Work</option>
+                        <option value="personal">Personal</option>
+                        <option value="errands">Errands</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <button type="submit" class="form-button" [disabled]="f.invalid">Save</button>
+                    <button type="button" class="form-button" (click)="triggerClose()">Cancel</button>
+                    <div class="validationMessage" *ngIf="priority2.errors?.['pattern']">Priority should only be a number between 1 to 10</div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>

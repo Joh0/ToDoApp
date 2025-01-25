@@ -76,5 +76,8 @@ export class CrudService {
     return this.http.put<{ message: string, error: string } | { message: string }>(this.apiURL + 'markDelete', idObject);
   }
 
+  editItem(item: Item): Observable<{ message: string, error: string} | { message: string }>{
+    return this.http.put<{ message: string, error: string} | { message: string }>(this.apiURL + 'edit', item);
+  }
 
 }

@@ -1,0 +1,58 @@
+.form-input, .form-label{
+    margin-right: 5px;
+    margin-bottom: 15px;
+}
+
+.form-button{
+    margin-right: 5px;
+}
+
+.validationMessage{
+    margin: 5px;
+    color: red;
+}
+
+.overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.edit-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+}
+
+.form-container{
+    margin: 20px;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+}
+
+h1{
+    text-align: center;
+    vertical-align: top;
+}
+  
+

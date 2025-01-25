@@ -11,6 +11,8 @@ const db = require("./db");
 */
 
 editItem = (req, res) => {
+    console.log("Logging ItemToBeEdited");
+    console.log(req.body);
     const { id, item, priority, category } = req.body;
     if( !item || !priority || !category ){
         return res.status(400).json({ message: "Item has null attributes!"});
