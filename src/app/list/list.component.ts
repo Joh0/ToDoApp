@@ -3,7 +3,6 @@ import { CrudService } from '../crud.service';
 import { Item } from '../models/item.model';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { response } from 'express';
 
 @Component({
   selector: 'app-list',
