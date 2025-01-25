@@ -1,10 +1,11 @@
 <table>
     <tbody>
         <tr>
-            <th><a routerLink="home" routerLinkActive="active">Main Page</a></th>
-            <th><a routerLink="list" routerLinkActive="active" >To Do List</a></th>
-            <th><a routerLink="recycle" routerLinkActive="active" >Recycle Bin</a></th>
-            <th><a routerLink="login" routerLinkActive="active">Login/Register</a></th>
+            <th routerLinkActive="home"><a routerLink="home" routerLinkActive="active">Main Page</a></th> 
+            <!-- Applies "home" class to "th" if link is active, allowing you to color the background area of the home section of the header same as the home page-->
+            <th routerLinkActive="list"><a routerLink="list" routerLinkActive="active" >To Do List</a></th>
+            <th routerLinkActive="recycle"><a routerLink="recycle" routerLinkActive="active" >Recycle Bin</a></th>
+            <th routerLinkActive="login"><a routerLink="login" routerLinkActive="active">Login/Register</a></th>
             <th><button (click)="logOut()" [disabled] = "this.message == 'Please Sign In'">Log Out</button></th>
             <th>{{ message }}</th>
         </tr>

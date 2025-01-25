@@ -39,3 +39,10 @@
 #toggle{
     margin-right: 5px;
 }
+
+:host{
+    position: fixed;
+    background-color: tan;
+    width: 100%;
+    height: 100vh;
+}

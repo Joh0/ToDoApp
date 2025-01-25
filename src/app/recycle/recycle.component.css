@@ -21,3 +21,10 @@ table, th, td, tr{
 td, th{
     text-align: center;
 }
+
+:host{  
+    position: fixed;
+    background-color: mediumpurple;
+    width: 100%;
+    height: 100vh;
+}

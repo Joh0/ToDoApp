@@ -1,7 +1,16 @@
-*{
+h2, h3{
     margin-left: 20%;
 }
 
 h1{
+    margin-left: 20%;
     margin-top: 5%;
 }
+
+:host{
+    position: fixed;
+    background-color: brown;
+    width: 100%;
+    height: 100vh; /* This, along with position fixed, allows you to color the entire backrgound. */
+}
+

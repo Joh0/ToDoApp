@@ -1,5 +1,7 @@
 table{
-    width: 100%
+    width: 100%;
+    background-color: olive
+    ;
 }
 
 th, td{
@@ -8,7 +10,22 @@ th, td{
 }
 
 .active{
-    background-color: black;
     font-weight: bold;
     color: white;
+}
+
+.home{
+    background-color: brown;
+}
+
+.list{
+    background-color: olivedrab;
+}
+
+.recycle{
+    background-color: mediumpurple;
+}
+
+.login{
+    background-color: tan;
 }
