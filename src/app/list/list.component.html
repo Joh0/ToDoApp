@@ -19,6 +19,7 @@
         <div class="form-row">
             <label class="form-label" for="category">Category [Optional]</label>
             <select class="form-input" id="category" #category="ngModel" ngModel name="category">
+                <option value="">(null)</option>
                 <option value="household">Household</option>
                 <option value="work">Work</option>
                 <option value="personal">Personal</option>
@@ -28,6 +29,7 @@
         <div class="form-row">
             <label class="form-label" for="status">Status [Optional]</label>
             <select class="form-input" id="status" #status="ngModel" ngModel name="status">
+                <option value="">(null)</option>
                 <option value="active">Active</option>
                 <option value="completed">Completed</option>
             </select>
