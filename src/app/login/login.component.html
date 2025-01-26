@@ -20,6 +20,10 @@
         <div class="form-row" *ngIf="this.submitButtonText=='Register'">
             <label class="form-label" for="group">Group:</label>
             <input class="form-input" id="group" #group="ngModel" ngModel name="group" type="text" pattern="^[a-zA-z0-9 ]{3,12}$" required>
+            <div #enquiry (mouseenter)="onMouseEnter(enquiry)" (mouseleave)="onMouseOut(enquiry)">
+                What is group?
+            </div>
+            <div class="message" *ngIf="enquiryMessageToggle">{{ enquiryMessage }}</div>
             <div class="validation" *ngIf="group.invalid && group.touched">
                 <div class="alert-text" *ngIf="group.errors?.['required']">Group should not be blank</div>
                 <div class="alert-text" *ngIf="group.errors?.['pattern']">Group should be 3 to 12 characters, consisting only of letters and numbers and spaces</div>

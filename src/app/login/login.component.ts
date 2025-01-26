@@ -16,6 +16,8 @@ export class LoginComponent {
   switchButtonText: string = 'Switch to Register';
   passwordButton: string = 'Show Password';
   passwordFlag: boolean = false;
+  enquiryMessage: string = 'By inputting a group, you are able to view the To Do items of other members of the same group';
+  enquiryMessageToggle: boolean = false;
 
   constructor(private authService: AuthService, private router: Router){}
 
@@ -90,8 +92,17 @@ export class LoginComponent {
         alert(error.error.message);
       }
     )
-    
-    
+  }
+
+  onMouseEnter(enquiry: HTMLElement){
+    enquiry.style.color = "white";
+    this.enquiryMessageToggle = true;
+
+  }
+
+  onMouseOut(enquiry: HTMLElement){
+    enquiry.style.color="black";
+    this.enquiryMessageToggle = false;
   }
 
 }
