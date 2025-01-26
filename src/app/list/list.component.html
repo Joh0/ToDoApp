@@ -89,7 +89,22 @@
     <form (ngSubmit)="addItem(f2)" #f2="ngForm">
         <input class="form-input2" [(ngModel)]="item.id" #id2="ngModel" name="id" hidden> <!-- disabled will prevent form from submitting id-->
         <input class="form-input2" [(ngModel)]="item.item" #item2="ngModel" name="item" required>
+        <!--
         <input class="form-input2" [(ngModel)]="item.priority" #priority2="ngModel" name="priority" type="number" pattern="^(10|[1-9])$" required>
+        It is a hassle to type the priority, hence will make it a dropdown
+        -->
+        <select class="form-input2" [(ngModel)]="item.priority" #priority2="ngModel" name="priority" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
         <select class="form-input2" [(ngModel)]="item.category" #category2="ngModel" name="category" required>
             <option value="household">Household</option>
             <option value="work">Work</option>
@@ -100,7 +115,11 @@
         <input class="form-input2" [(ngModel)]="item.group" #group2="ngModel" name="group" hidden>
         <input class="form-input2" [(ngModel)]="item.status" #status2="ngModel" name="status" hidden>
         <button class="form-button" type="submit" [disabled]="f2.invalid">Add</button>
+        <!--
         <div class="validationMessage" *ngIf="priority2.errors?.['pattern']">Priority should only be a number between 1 to 10</div>
+        As priority is now a dropdown, no validation message is required
+        -->
+        
     </form>
 </div>
 <app-edit *ngIf="isEditing" [item]="itemToBeEdited" (close)="closeEdit()" (save)="editItem($event)"></app-edit>
