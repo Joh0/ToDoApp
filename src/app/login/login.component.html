@@ -2,10 +2,10 @@
     <form (ngSubmit)="submitForm(f)" #f="ngForm">
         <div class="form-row">
             <label class="form-label" for="username">Username:</label>
-            <input class="form-input" id="username" #username="ngModel" ngModel name="name" type="text" placeholder="John" pattern="^[a-zA-z0-9]{3,12}$" required>
+            <input class="form-input" id="username" #username="ngModel" ngModel name="name" type="text" placeholder="John" pattern="^[a-zA-z0-9 ]{3,12}$" required>
             <div class="validation" *ngIf="username.invalid && username.touched">
                 <div class="alert-text" *ngIf="username.errors?.['required']">Username should not be blank</div>
-                <div class="alert-text" *ngIf="username.errors?.['pattern']">Username should be 3 to 12 characters, consisting only of letters and numbers</div>
+                <div class="alert-text" *ngIf="username.errors?.['pattern']">Username should be 3 to 12 characters, consisting only of letters and numbers and spaces</div>
             </div>
         </div>
         <div class="form-row">
@@ -19,10 +19,10 @@
         </div>
         <div class="form-row" *ngIf="this.submitButtonText=='Register'">
             <label class="form-label" for="group">Group:</label>
-            <input class="form-input" id="group" #group="ngModel" ngModel name="group" type="text" pattern="^[a-zA-z0-9]{3,12}$" required>
+            <input class="form-input" id="group" #group="ngModel" ngModel name="group" type="text" pattern="^[a-zA-z0-9 ]{3,12}$" required>
             <div class="validation" *ngIf="group.invalid && group.touched">
                 <div class="alert-text" *ngIf="group.errors?.['required']">Group should not be blank</div>
-                <div class="alert-text" *ngIf="group.errors?.['pattern']">Group should be 3 to 12 characters, consisting only of letters and numbers</div>
+                <div class="alert-text" *ngIf="group.errors?.['pattern']">Group should be 3 to 12 characters, consisting only of letters and numbers and spaces</div>
             </div>
         </div>
         <div class="form-row">
